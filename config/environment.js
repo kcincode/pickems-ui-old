@@ -3,6 +3,7 @@
 module.exports = function(environment) {
   var ENV = {
     modulePrefix: 'pickems',
+    podModulePrefix: 'pickems/features',
     environment: environment,
     baseURL: '/',
     locationType: 'auto',
@@ -25,6 +26,26 @@ module.exports = function(environment) {
     // ENV.APP.LOG_TRANSITIONS = true;
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
+
+    ENV.api = {
+      host: 'http://localhost:4000',
+      namespace: 'api',
+      auth: 'token',
+      refresh: 'auth/token-refresh'
+    }
+
+    ENV['ember-simple-auth'] = {
+      authorizer: 'authorizer:token'
+    };
+
+    ENV['ember-simple-auth-token'] = {
+      refreshAccessTokens: true,
+      timeFactor: 1000,
+      refreshLeeway: 300,
+      serverTokenEndpoint: `${ENV.api.host}/${ENV.api.namespace}/${ENV.api.auth}`,
+      serverTokenRefreshEndpoint: `${ENV.api.host}/${ENV.api.namespace}/${ENV.api.refresh}`,
+      identificationField: 'email'
+    };
   }
 
   if (environment === 'test') {

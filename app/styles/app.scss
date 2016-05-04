@@ -1,0 +1,56 @@
+@import "bootstrap";
+@import 'font-awesome';
+
+$ember-power-select-trigger-ltr-padding: 0 0.5rem;
+@import 'ember-power-select/themes/bootstrap';
+@import "ember-power-select";
+
+@import 'variables';
+@import 'others';
+
+body {
+    background-color: darken($white, 5%);
+}
+
+input {
+    background-color: darken($white, 2%) !important;
+}
+
+.alert {
+    text-align: center;
+}
+
+.page-content {
+    min-height: 20rem;
+    padding: 0.9375rem 0.9375rem 6rem 0.9375rem;
+}
+
+.ember-power-select {
+    &.form-control {
+        padding: 0;
+        height: inherit;
+        border: 1px solid #ccc;
+    },
+
+    .ember-power-select-trigger {
+        border: 0;
+        text-align: left;
+        padding: 0.125rem 1.5rem 0.125rem 0.5rem;
+    }
+}
+
+.has-error {
+    .ember-power-select {
+        &.form-control {
+            border-color: #a94442;
+            box-shadow: 0 0 7px lighten(#a94442, 30%);
+        }
+    }
+}
+
+.liquid-container {
+    overflow: visible;
+    .liquid-child {
+        overflow: visible;
+    }
+}
