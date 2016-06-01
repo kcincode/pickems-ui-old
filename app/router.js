@@ -10,6 +10,8 @@ Router.map(function() {
   this.route('register');
   this.route('rules');
   this.route('contact');
+  this.route('storylines');
+  this.route('teams');
 });
 
 export default Router;
