@@ -5,7 +5,7 @@ module('Unit | Utility | user validations');
 
 // Replace this with your real tests.
 test('it works', function(assert) {
-  assert.ok(email);
-  assert.ok(password);
-  assert.ok(passwordConfirmation);
+  assert.ok(userValidations.email);
+  assert.ok(userValidations.password);
+  assert.ok(userValidations.passwordConfirmation);
 });

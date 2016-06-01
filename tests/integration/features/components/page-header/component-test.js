@@ -11,14 +11,7 @@ test('it renders', function(assert) {
 
   this.render(hbs`{{page-header}}`);
 
-  assert.equal(this.$().text().trim(), '');
-
-  // Template block usage:
-  this.render(hbs`
-    {{#page-header}}
-      template block text
-    {{/page-header}}
-  `);
-
-  assert.equal(this.$().text().trim(), 'template block text');
+  assert.equal(this.$('.main-menu').length, 1, 'it has a main menu class');
+  assert.equal(this.$('.main-menu .navbar').length, 1, 'it has a navbar');
+  assert.equal(this.$('.main-menu .nav.navbar-nav').length, 2, 'it has a two navbar sections');
 });

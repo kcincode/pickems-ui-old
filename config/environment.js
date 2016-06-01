@@ -6,6 +6,9 @@ module.exports = function(environment) {
     podModulePrefix: 'pickems/features',
     environment: environment,
     baseURL: '/',
+    nflYear: 2016,
+    contactUrl: 'https://www.facebook.com/groups/FantasyPickems/',
+    paypalEmail: 'rimlerm@gmail.com',
     locationType: 'auto',
     EmberENV: {
       FEATURES: {
@@ -52,6 +55,26 @@ module.exports = function(environment) {
     // Testem prefers this...
     ENV.baseURL = '/';
     ENV.locationType = 'none';
+
+    ENV.api = {
+      host: 'http://localhost:4000',
+      namespace: 'api',
+      auth: 'token',
+      refresh: 'auth/token-refresh'
+    }
+
+    ENV['ember-simple-auth'] = {
+      authorizer: 'authorizer:token'
+    };
+
+    ENV['ember-simple-auth-token'] = {
+      refreshAccessTokens: true,
+      timeFactor: 1000,
+      refreshLeeway: 300,
+      serverTokenEndpoint: `${ENV.api.host}/${ENV.api.namespace}/${ENV.api.auth}`,
+      serverTokenRefreshEndpoint: `${ENV.api.host}/${ENV.api.namespace}/${ENV.api.refresh}`,
+      identificationField: 'email'
+    };
 
     // keep test console output quieter
     ENV.APP.LOG_ACTIVE_GENERATION = false;

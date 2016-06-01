@@ -34,7 +34,7 @@ export default Ember.Route.extend(Validations, UnauthenticatedRouteMixin, {
         grant_type: 'password',
         identification: this.get('currentModel.email'),
         password: this.get('currentModel.password')
-      }
+      };
 
       this.get('session').authenticate('authenticator:jwt', credentials).then(() => {
         this.transitionToRoute('index');

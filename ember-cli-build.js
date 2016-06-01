@@ -9,7 +9,7 @@ module.exports = function(defaults) {
         'bower_components/bootstrap/scss'
       ]
     },
-    emberCliFontAwesome: {
+    'ember-font-awesome': {
       useScss: true
     }
   });
