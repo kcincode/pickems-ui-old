@@ -1,0 +1,11 @@
+<div class="form-group{{if (v-get model name 'isInvalid') ' has-danger'}}">
+    {{input
+        type=type
+        class=(if (v-get model name 'isInvalid') 'form-control form-control-danger' 'form-control')
+        value=value
+        placeholder=placeholder
+    }}
+    {{#if (v-get model name 'isInvalid')}}
+        <div class="text-help">{{v-get model name 'message'}}</div>
+    {{/if}}
+</div>
