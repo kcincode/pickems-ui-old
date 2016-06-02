@@ -1,12 +1,13 @@
 import Ember from 'ember';
 import ApplicationRouteMixin from 'ember-simple-auth/mixins/application-route-mixin';
+import ENV from 'pickems/config/environment';
+import fetch from 'ember-network/fetch';
 
 const { inject: { service } } = Ember;
 
 export default Ember.Route.extend(ApplicationRouteMixin, {
   session: service(),
   currentUser: service(),
-
   beforeModel() {
     if (this.get('session').get('isAuthenticated')) {
       return fetch(`${ENV.api.host}/${ENV.api.namespace}/users/current`, {

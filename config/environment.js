@@ -38,16 +38,13 @@ module.exports = function(environment) {
     }
 
     ENV['ember-simple-auth'] = {
-      authorizer: 'authorizer:token'
+      authenticationRoute: 'login',
+      routeIfAlreadyAuthenticated: 'storylines',
+      routeAfterAuthentication: 'storylines'
     };
 
-    ENV['ember-simple-auth-token'] = {
-      refreshAccessTokens: true,
-      timeFactor: 1000,
-      refreshLeeway: 300,
-      serverTokenEndpoint: `${ENV.api.host}/${ENV.api.namespace}/${ENV.api.auth}`,
-      serverTokenRefreshEndpoint: `${ENV.api.host}/${ENV.api.namespace}/${ENV.api.refresh}`,
-      identificationField: 'email'
+    ENV['ember-cli-mirage'] = {
+      enabled: false
     };
   }
 
