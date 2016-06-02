@@ -23,8 +23,6 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
           this.set('session.currentUser', currentUser);
         });
       });
-    } else {
-      this.transitionTo('login');
     }
   }
 });
