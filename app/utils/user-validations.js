@@ -1,6 +1,6 @@
 import { validator } from 'ember-cp-validations';
 
-export const name = [
+export const fullname = [
   validator('presence', true)
 ];
 
@@ -27,5 +27,5 @@ export const passwordConfirmation = [
 ];
 
 export default {
-  name, email, password, passwordConfirmation
+  fullname, email, password, passwordConfirmation
 };
