@@ -6,9 +6,13 @@ module.exports = function(environment) {
     podModulePrefix: 'pickems/features',
     environment: environment,
     baseURL: '/',
-    nflYear: 2016,
+    nflYear: 2015,
     contactUrl: 'https://www.facebook.com/groups/FantasyPickems/',
     paypalEmail: 'rimlerm@gmail.com',
+    weeks: {
+      reg: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17],
+      post: [18, 19, 20, 22],
+    },
     locationType: 'auto',
     EmberENV: {
       FEATURES: {

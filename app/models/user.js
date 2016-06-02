@@ -1,5 +1,6 @@
 import Model from 'ember-data/model';
 import attr from 'ember-data/attr';
+import { hasMany } from 'ember-data/relationships';
 import { buildValidations } from 'ember-cp-validations';
 import { fullname, email, password, passwordConfirmation } from 'pickems/utils/user-validations';
 
@@ -16,4 +17,6 @@ export default Model.extend(Validations, {
   password: attr('string'),
   passwordConfirmation: attr('string'),
   admin: attr('boolean'),
+
+  teams: hasMany('team')
 });

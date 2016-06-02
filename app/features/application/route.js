@@ -7,7 +7,6 @@ const { inject: { service } } = Ember;
 
 export default Ember.Route.extend(ApplicationRouteMixin, {
   session: service(),
-  currentUser: service(),
   beforeModel() {
     if (this.get('session').get('isAuthenticated')) {
       return fetch(`${ENV.api.host}/${ENV.api.namespace}/users/current`, {

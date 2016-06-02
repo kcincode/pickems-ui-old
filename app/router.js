@@ -12,6 +12,7 @@ Router.map(function() {
   this.route('contact');
   this.route('storylines');
   this.route('teams');
+  this.route('picks', { path: '/picks/:slug' });
 });
 
 export default Router;
