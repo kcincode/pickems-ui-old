@@ -5,7 +5,7 @@ module.exports = function(environment) {
     modulePrefix: 'pickems',
     podModulePrefix: 'pickems/features',
     environment: environment,
-    baseURL: '/',
+    rootURL: '/',
     nflYear: 2016,
     contactUrl: 'https://www.facebook.com/groups/FantasyPickems/',
     paypalEmail: 'rimlerm@gmail.com',
@@ -50,7 +50,7 @@ module.exports = function(environment) {
 
   if (environment === 'test') {
     // Testem prefers this...
-    ENV.baseURL = '/';
+    ENV.rootUrl = '/';
     ENV.locationType = 'none';
 
     ENV.api = {

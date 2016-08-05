@@ -9,8 +9,11 @@
                     {{v-input-group model=model name='email' type='email' value=model.email placeholder='Email address'}}
 
                     <div class="row">
-                        <div class="col-xs-12">
-                            {{v-input-group model=model name='name' value=model.name placeholder='Full name'}}
+                        <div class="col-xs-6">
+                            {{v-input-group model=model name='first_name' value=model.first_name placeholder='First name'}}
+                        </div>
+                        <div class="col-xs-6">
+                            {{v-input-group model=model name='last_name' value=model.last_name placeholder='Last name'}}
                         </div>
                     </div>
                     <div class="row">
@@ -23,7 +26,7 @@
                     </div>
                     <hr/>
                     <div class="form-group">
-                        <button type="submit" class="btn btn-primary btn-block" disabled={{v-get model 'isInvalid'}}>Create an Account</button>
+                        <button type="submit" id="register-btn" class="btn btn-primary btn-block" disabled={{v-get model 'isInvalid'}}>Create an Account</button>
                     </div>
                 </form>
             </div>

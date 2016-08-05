@@ -97,7 +97,9 @@
                         <hr/>
 
                         <div class="text-xs-center">
-                            {{link-to 'Sign up now!' 'register' class="btn btn-primary"}}
+                            {{#unless session.isAuthenticated}}
+                                {{link-to 'Sign up now!' 'register' class="btn btn-primary"}}
+                            {{/unless}}
                             {{link-to 'Have a question?' 'contact' class="btn btn-primary"}}
                         </div>
                     </div>

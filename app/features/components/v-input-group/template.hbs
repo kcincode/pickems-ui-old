@@ -1,5 +1,7 @@
 <div class="form-group{{if (v-get model name 'isInvalid') ' has-danger'}}">
+    <label>{{placeholder}}</label>
     {{input
+        id=name
         type=type
         class=(if (v-get model name 'isInvalid') 'form-control form-control-danger' 'form-control')
         value=value

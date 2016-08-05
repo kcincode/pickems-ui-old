@@ -5,15 +5,5 @@ import ENV from 'pickems/config/environment';
 export default JSONAPIAdapter.extend(DataAdapterMixin, {
   host: ENV.api.host,
   namespace: ENV.api.namespace,
-  authorizer: 'authorizer:oauth2',
-
-  urlForCreateRecord(modelName/*, snapshot*/) {
-    switch(modelName) {
-      case 'user':
-      case 'users':
-        return this._super.apply(this, arguments).replace('users', 'register');
-      default:
-        return this._super(...arguments);
-    }
-  }
+  authorizer: 'authorizer:oauth2'
 });
