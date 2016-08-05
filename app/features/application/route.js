@@ -13,15 +13,19 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
       return fetch(`${ENV.api.host}/${ENV.api.namespace}/users/current`, {
         type: 'GET',
         headers: {
-          'Authorization': `Bearer ${this.get('session').get('session.content.authenticated.access_token')}`
+          'Authorization': `JWT ${this.get('session').get('session.content.authenticated.data.access_token')}`
         }
       }).then((raw) => {
         return raw.json().then((data) => {
+          // console.log('data', JSON.stringify(data));
           // modify type to singular
           data.data.type = 'user';
-          const currentUser = this.store.push(data);
+          let currentUser = this.store.push(data);
           this.set('session.currentUser', currentUser);
         });
+      }).catch((error) => {
+        console.error(error);
+        this.get('session').invalidate();
       });
     }
   }

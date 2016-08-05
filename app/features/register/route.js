@@ -10,14 +10,23 @@ export default Ember.Route.extend({
   },
   deactivate() {
     let model = this.controllerFor('register').get('model');
-    console.log('model', model);
     if ( (model.get('isNew') || model.get('isDirty')) && (!model.get('isSaving')) ) {
       model.rollbackAttributes();
     }
   },
   actions: {
     register() {
-      this.get('currentModel').save().then(() => {
+      let model = this.get('currentModel');
+
+      // lowercase email
+      let email = model.get('email').toLowerCase();
+      model.set('email', email);
+
+      // set the usename from the email
+      let username = email.substring(0, email.indexOf('@'));
+      model.set('username', username);
+
+      model.save().then(() => {
         // Successful Save
         this.transitionTo('login');
         this.get('flashMessages').success('Registered! Please login now');
