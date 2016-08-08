@@ -40,6 +40,11 @@
                                 {{display-status test=pick.available text=pick.text}}
                             {{/power-select}}
                             {{input id="pick1-playmaker" type="checkbox" checked=model.picks.pick1.playmaker}} <label for="pick1-playmaker">Denote as Playmaker</label>
+                            {{#if model.picks.pick1.reason}}
+                                <div class="text-danger">
+                                    {{model.picks.pick1.reason}}
+                                </div>
+                            {{/if}}
                         </div>
                     </div>
                 </div>
@@ -60,6 +65,11 @@
                                 {{display-status test=pick.available text=pick.text}}
                             {{/power-select}}
                             {{input id="pick2-playmaker" type="checkbox" checked=model.picks.pick2.playmaker}} <label for="pick2-playmaker">Denote as Playmaker</label>
+                            {{#if model.picks.pick2.reason}}
+                                <div class="text-danger">
+                                    {{model.picks.pick2.reason}}
+                                </div>
+                            {{/if}}
                         </div>
                     </div>
                 </div>
