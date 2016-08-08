@@ -12,7 +12,9 @@ Router.map(function() {
   this.route('rules');
   this.route('contact');
   this.route('storylines');
-  this.route('teams');
+  this.route('teams', function() {
+    this.route('team', { path: ':team' });
+  });
 });
 
 export default Router;

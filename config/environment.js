@@ -34,7 +34,7 @@ module.exports = function(environment) {
       host: 'http://localhost:4000',
       namespace: 'api',
       auth: 'token',
-      refresh: 'auth/token-refresh'
+      refresh: 'refresh'
     }
 
     ENV['ember-simple-auth'] = {
@@ -57,7 +57,7 @@ module.exports = function(environment) {
       host: 'http://localhost:4000',
       namespace: 'api',
       auth: 'token',
-      refresh: 'auth/token-refresh'
+      refresh: 'refresh'
     }
 
     ENV['ember-simple-auth'] = {

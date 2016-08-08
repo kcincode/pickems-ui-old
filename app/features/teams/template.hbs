@@ -1,1 +1,29 @@
-{{outlet}}
+<div class="teams">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="card">
+                <div class="card-block">
+                    {{#power-select
+                        triggerClass='form-control'
+                        allowClear=true
+                        options=model.teams
+                        searchField='name'
+                        placeholder='Select a team'
+                        selected=selectedTeam
+                        onchange=(route-action 'changeTeam') as |team|}}
+                        {{team.name}}
+                    {{/power-select}}
+
+                    {{#if selectedTeam}}
+                        <span class="text-muted">
+                            * use the clear button to go back to create a team
+                        </span>
+                    {{/if}}
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12">
+            {{outlet}}
+        </div>
+    </div>
+</div>

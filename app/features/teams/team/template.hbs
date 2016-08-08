@@ -1,0 +1,169 @@
+<div class="team">
+    <div class="card">
+        <div class="card-block text-xs-center">
+            <h3>{{team.team.name}}</h3>
+            <h5>
+                {{#if team.team.paid}}
+                    <label class="d-inline bg-success p-x-3 p-y-1">Paid</label>
+                {{else}}
+                    <label class="d-inline bg-danger p-x-3 p-y-1">Not Paid</label>
+                {{/if}}
+            </h5>
+        </div>
+        <div class="card-block text-xs-center">
+            <div class="btn-group" role="group" aria-label="weeks">
+                <h6>Current week is {{system.week}}</h6>
+                {{#each (range 1 17 true) as |week|}}
+                    <button class="btn btn-secondary{{if (eq week system.selectedWeek) ' active'}}" {{action 'changeWeek' week}}>{{week}}</button>
+                {{/each}}
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-block">
+            <h5 class="text-xs-center">Picks for week {{system.selectedWeek}}</h5>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header">Pick #1</div>
+                        <div class="card-block text-xs-center">
+                            {{#power-select
+                                allowClear=true
+                                triggerClass='form-control'
+                                searchField='name'
+                                disabled=model.picks.pick1.disabled
+                                placeholder="Select a pick"
+                                selected=model.picks.pick1.selected
+                                search=(route-action 'filterPicks')
+                                searchPlaceholder='Type at least 3 characters to search'
+                                onchange=(route-action 'updatePick' 'pick1') as |pick|}}
+                                {{display-status test=pick.available text=pick.text}}
+                            {{/power-select}}
+                            {{input id="pick1-playmaker" type="checkbox" checked=model.picks.pick1.playmaker}} <label for="pick1-playmaker">Denote as Playmaker</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header">Pick #2</div>
+                        <div class="card-block text-xs-center">
+                            {{#power-select
+                                allowClear=true
+                                triggerClass='form-control'
+                                searchField='name'
+                                disabled=model.picks.pick2.disabled
+                                placeholder="Select a pick"
+                                selected=model.picks.pick2.selected
+                                search=(route-action 'filterPicks')
+                                searchPlaceholder='Type at least 3 characters to search'
+                                onchange=(route-action 'updatePick' 'pick2') as |pick|}}
+                                {{display-status test=pick.available text=pick.text}}
+                            {{/power-select}}
+                            {{input id="pick2-playmaker" type="checkbox" checked=model.picks.pick2.playmaker}} <label for="pick2-playmaker">Denote as Playmaker</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-block">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-header">Pick Left</div>
+                        <div class="card-block">
+                            <div class="row">
+                                <div class="col-xs-6 text-xs-right">QBs:</div>
+                                <div class="col-xs-6"><strong class="text-success">{{display-status test=(gt model.picks.picks_left.QB 0) text=model.picks.picks_left.QB}}</strong></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-6 text-xs-right">RBs:</div>
+                                <div class="col-xs-6"><strong class="text-success">{{display-status test=model.picks.picks_left.playmakers text=model.picks.picks_left.RB}}</strong></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-6 text-xs-right">WR/TEs:</div>
+                                <div class="col-xs-6"><strong class="text-success">{{display-status test=model.picks.picks_left.playmakers text=model.picks.picks_left.WRTE}}</strong></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-6 text-xs-right">Ks:</div>
+                                <div class="col-xs-6"><strong class="text-success">{{display-status test=model.picks.picks_left.playmakers text=model.picks.picks_left.K}}</strong></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-6 text-xs-right">Playmakers:</div>
+                                <div class="col-xs-6"><strong class="text-success">
+                                    {{display-status test=model.picks.picks_left.playmakers text=model.picks.picks_left.playmakers}}</strong></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-6 text-xs-right">Teams:</div>
+                                <div class="col-xs-6">
+                                    {{display-status test=(eq model.picks.picks_left.afc 1) text='AFC' divider='|'}}
+                                    {{display-status test=(eq model.picks.picks_left.nfc 1) text='NFC'}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card teams-picked">
+                        <div class="card-header">AFC Teams Left</div>
+                        <div class="card-block">
+                            {{#each model.picks.teams_picked.AFC as |afcTeam idx|}}
+                                    <div class="col-xs-4 text-xs-center">
+                                        {{display-status test=afcTeam.available text=afcTeam.abbr}}
+                                    </div>
+                                {{/each}}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card teams-picked">
+                        <div class="card-header">NFC Teams Left</div>
+                        <div class="card-block">
+                            <div class="row">
+                                {{#each model.picks.teams_picked.NFC as |nfcTeam idx|}}
+                                    <div class="col-xs-4 text-xs-center">
+                                        {{display-status test=nfcTeam.available text=nfcTeam.abbr}}
+                                    </div>
+                                {{/each}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card nfl-schedule">
+        <div class="card-block">
+            <div class="row">
+                <div class="col-xs-12 col-md-10 offset-md-1">
+                    <h4>NFL Schedule for week #{{system.selectedWeek}}</h4>
+                </div>
+            </div>
+            {{#each-in model.picks.schedule as |day data| }}
+                <div class="row heading">
+                    <div class="col-xs-12 col-md-10 offset-md-1 bg-info">
+                        {{day}}
+                    </div>
+                </div>
+                {{#each data as |game|}}
+                    <div class="row">
+                        <div class="col-xs-3 offset-md-1">
+                            {{game.away}}
+                        </div>
+                        <div class="col-xs-2 text-xs-center">
+                            <strong>VS</strong>
+                        </div>
+                        <div class="col-xs-3">
+                            {{game.home}}
+                        </div>
+                        <div class="col-xs-2 text-xs-right">
+                            <a target="_new" href="{{game.url}}">Game Link {{fa-icon 'link'}}</a>
+                        </div>
+                    </div>
+                {{/each}}
+            {{/each-in}}
+        </div>
+    </div>
+</div>

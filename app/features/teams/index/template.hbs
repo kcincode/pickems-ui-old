@@ -1,0 +1,22 @@
+<div class="card">
+    <div class="container text-xs-center">
+        <div class="card-block">
+            <br/><br/>
+            <h1>No Team Selected, please select a team</h1>
+        </div>
+        <div class="card-block">
+            <h1 class="text-muted">- OR -</h1>
+        </div>
+        <div class="card-block">
+            <div class="row">
+                <div class="col-xs-12 col-md-8 offset-md-2">
+                    <h4 class="text-xs-center">Create a Team</h4>
+                    <div class="form-group">
+                        {{input value=newTeam.name placeholder="Team name" class="form-control"}}
+                    </div>
+                    <button class="btn btn-primary" {{action (route-action 'createTeam')}}>Create Team</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
