@@ -6,8 +6,7 @@ node_js:
 sudo: false
 
 env:
-  - SURGE_LOGIN=nick.felicelli@gmail.com
-  - SURGE_TOKEN=bb46b98b194e39d8df028cbe25213968
+  - SURGE_LOGIN=nick.felicelli@gmail.com SURGE_TOKEN=bb46b98b194e39d8df028cbe25213968
 
 cache:
   directories:
