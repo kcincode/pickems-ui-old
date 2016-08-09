@@ -73,7 +73,6 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
           'Authorization': `JWT ${this.get('session').get('session.content.authenticated.data.access_token')}`
         },
         success() {
-          console.log('refresh')
           _this.refresh();
         },
         error() {

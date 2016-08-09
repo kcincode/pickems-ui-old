@@ -5,20 +5,20 @@ moduleForComponent('display-status', 'Integration | Component | display status',
   integration: true
 });
 
-test('it renders', function(assert) {
-  // Set any properties with this.set('myProperty', 'value');
-  // Handle any actions with this.on('myAction', function(val) { ... });
+test('it renders a truthful expression', function(assert) {
+  this.set('test', true);
+  this.set('text', 'this is a test');
 
-  this.render(hbs`{{display-status}}`);
+  this.render(hbs`{{display-status test=test text=text}}`);
 
-  assert.equal(this.$().text().trim(), '');
+  assert.equal(this.$('.text-success').html(), 'this is a test');
+});
 
-  // Template block usage:
-  this.render(hbs`
-    {{#display-status}}
-      template block text
-    {{/display-status}}
-  `);
+test('it renders a falsy expression', function(assert) {
+  this.set('test', false);
+  this.set('text', 'this is a test');
 
-  assert.equal(this.$().text().trim(), 'template block text');
+  this.render(hbs`{{display-status test=test text=text}}`);
+
+  assert.equal(this.$('.text-danger').html(), '<del>this is a test</del>');
 });
