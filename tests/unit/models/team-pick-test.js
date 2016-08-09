@@ -1,8 +1,8 @@
 import { moduleForModel, test } from 'ember-qunit';
 
-moduleForModel('team', 'Unit | Model | team', {
+moduleForModel('team-pick', 'Unit | Model | team pick', {
   // Specify the other units that are required for this test.
-  needs: ['model:user']
+  needs: []
 });
 
 test('it exists', function(assert) {

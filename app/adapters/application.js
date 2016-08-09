@@ -5,5 +5,16 @@ import ENV from 'pickems/config/environment';
 export default JSONAPIAdapter.extend(DataAdapterMixin, {
   host: ENV.api.host,
   namespace: ENV.api.namespace,
-  authorizer: 'authorizer:oauth2'
+  authorizer: 'authorizer:oauth2',
+
+  handleResponse(status) {
+    if (status === 401 || status === 403) {
+      if (this.get('session.isAuthenticated')) {
+        this.get('session').invalidate();
+      }
+      return true;
+    } else {
+      return this._super(...arguments);
+    }
+  }
 });

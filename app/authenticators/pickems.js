@@ -27,6 +27,6 @@ export default OAuth2PasswordGrant.extend({
         }
       }
     });
-  },
+  }
 
 });
