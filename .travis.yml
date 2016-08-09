@@ -5,6 +5,10 @@ node_js:
 
 sudo: false
 
+env:
+  - SURGE_LOGIN=nick.felicelli@gmail.com
+  - SURGE_TOKEN=bb46b98b194e39d8df028cbe25213968
+
 cache:
   directories:
     - node_modules
@@ -22,3 +26,12 @@ install:
 
 script:
   - npm test
+
+before_deploy:
+  - ember build -prod
+
+deploy:
+  skip_cleanup: true
+  provider: surge
+  project: ./dist
+
