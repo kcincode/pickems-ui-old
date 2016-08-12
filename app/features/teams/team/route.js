@@ -3,17 +3,33 @@ import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-rout
 import fetch from 'ember-network/fetch';
 import ENV from 'pickems/config/environment';
 
-const { inject: { service }, RSVP } = Ember;
+const { inject: { service }, RSVP, isEmpty } = Ember;
 
 export default Ember.Route.extend(AuthenticatedRouteMixin, {
+  queryParams: {
+    read_only: { refreshModel: true }
+  },
+
   system: service(),
 
   model(params) {
+    let selectedWeek = this.get('system.selectedWeek');
+    if (isEmpty(selectedWeek)) {
+      selectedWeek = this.get('system.week');
+    }
+    this.set('readOnly', params.read_only);
+
+    // generate the picks url
+    let picksUrl = `${ENV.api.host}/${ENV.api.namespace}/picks?week=${selectedWeek}&team=${params.team}`;
+    if (params.read_only) {
+      picksUrl = `${picksUrl}&read_only=${params.read_only}`;
+    }
+
     return RSVP.hash({
       team: this.store.query('team', { slug: params.team }).then((teams) => {
         return teams.get('firstObject');
       }),
-      picks: fetch(`${ENV.api.host}/${ENV.api.namespace}/picks?week=${this.get('system.selectedWeek')}&team=${params.team}`, {
+      picks: fetch(picksUrl, {
         type: 'GET',
         headers: {
           'Authorization': `JWT ${this.get('session').get('session.content.authenticated.data.access_token')}`
@@ -39,6 +55,12 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
       this.refresh();
     },
     filterPicks(term) {
+      // don't do anything if read only
+      if (this.get('readOnly')) {
+        return;
+      }
+
+      // if 2 or more characters are entered
       if (term.length > 1) {
         return fetch(`${ENV.api.host}/${ENV.api.namespace}/picks-filter?term=${term}`, {
           type: 'GET',
@@ -52,6 +74,11 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
     },
 
     updatePick(type, value) {
+      // don't do anything if read only
+      if (this.get('readOnly')) {
+        return;
+      }
+
       this.set(`currentModel.picks.${type}.selected`, value);
       let week = this.get('currentModel.picks.week');
       let number = type === 'pick1' ? 1 : 2;

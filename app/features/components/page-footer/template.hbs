@@ -3,7 +3,9 @@
         &copy;2016
     </div>
     <div class="col-xs-8 text-xs-right">
-        Week: <span class="text-primary">{{system.week}}</span>
+        {{#if system.week}}
+            Week: <span class="text-primary">{{system.week}}</span>
+        {{/if}}
         Year: <span class="text-primary">{{system.year}}</span>
     </div>
 </div>

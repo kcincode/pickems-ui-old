@@ -13,7 +13,13 @@ Router.map(function() {
   this.route('contact');
   this.route('storylines');
   this.route('teams', function() {
-    this.route('team', { path: ':team' });
+    this.route('team', { path: ':team' }, function() {});
+  });
+
+  this.route('stats', function() {
+    this.route('rankings');
+    this.route('weekly');
+    this.route('best');
   });
 });
 
