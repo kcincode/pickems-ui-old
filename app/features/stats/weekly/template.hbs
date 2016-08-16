@@ -1,0 +1,25 @@
+<div class="card">
+    <div class="card-block text-xs-center">
+        <h4 class="card-title">Weekly Leaders up to week #{{if (gt system.week 17) '17' system.week}}</h4>
+    </div>
+    <div class="card-block">
+        <table class="table table-hover table-condensed">
+            <thead>
+                <tr>
+                    <th>Week</th>
+                    <th>Team</th>
+                    <th>Points</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each model as |row|}}
+                    <tr>
+                        <td>{{row.week}}</td>
+                        <td>{{link-to row.team 'teams.team' row.slug (query-params read_only=true)}}</td>
+                        <td>{{row.points}}</td>
+                    </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+</div>
