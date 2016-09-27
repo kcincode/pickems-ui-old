@@ -4,7 +4,7 @@ module.exports = function(environment) {
   var ENV = {
     modulePrefix: 'pickems',
     podModulePrefix: 'pickems/features',
-    environment: environment,
+    environment,
     rootURL: '/',
     nflYear: 2016,
     contactUrl: 'https://www.facebook.com/groups/FantasyPickems/',
@@ -34,8 +34,9 @@ module.exports = function(environment) {
       host: 'http://localhost:4000',
       namespace: 'api',
       auth: 'token',
-      refresh: 'refresh'
-    }
+      refresh: 'refresh',
+      headerKey: 'Bearer'
+    };
 
     ENV['ember-simple-auth'] = {
       authenticationRoute: 'login',
@@ -58,7 +59,7 @@ module.exports = function(environment) {
       namespace: 'api',
       auth: 'token',
       refresh: 'refresh'
-    }
+    };
 
     ENV['ember-simple-auth'] = {
       authorizer: 'authorizer:token'

@@ -1,5 +1,11 @@
 .teams {
     .team {
+        .weeks {
+            .past {
+                color: $brand-warning;
+            }
+        }
+
         .teams-picked {
             .btn-block {
                 margin-top: 1px;

@@ -1,0 +1,6 @@
+{
+  "requireCamelCaseOrUpperCaseIdentifiers": false,
+  "requireCommentsToIncludeAccess": false,
+  "disallowDirectPropertyAccess": false,
+  "preset": "ember-suave"
+}

@@ -18,8 +18,9 @@ export default Ember.Route.extend(Validations, UnauthenticatedRouteMixin, {
   model() {
     return this;
   },
+
   actions: {
-    authenticate: function() {
+    authenticate() {
       this.get('flashMessages').clearMessages();
 
       let credentials = {

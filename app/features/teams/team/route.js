@@ -32,7 +32,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
       picks: fetch(picksUrl, {
         type: 'GET',
         headers: {
-          'Authorization': `JWT ${this.get('session').get('session.content.authenticated.data.access_token')}`
+          'Authorization': `${ENV.api.headerKey} ${this.get('session').get('session.content.authenticated.access_token')}`
         }
       }).then((response) => response.json())
     });
@@ -65,7 +65,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
         return fetch(`${ENV.api.host}/${ENV.api.namespace}/picks-filter?term=${term}`, {
           type: 'GET',
           headers: {
-            'Authorization': `JWT ${this.get('session').get('session.content.authenticated.data.access_token')}`
+            'Authorization': `${ENV.api.headerKey} ${this.get('session').get('session.content.authenticated.access_token')}`
           }
         }).then((response) => {
           return response.json();
@@ -91,13 +91,13 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
         method: 'POST',
         data: {
           team: teamId,
-          week: week,
-          number: number,
+          week,
+          number,
           value: JSON.stringify(value),
-          playmaker: playmaker
+          playmaker
         },
         headers: {
-          'Authorization': `JWT ${this.get('session').get('session.content.authenticated.data.access_token')}`
+          'Authorization': `${ENV.api.headerKey} ${this.get('session').get('session.content.authenticated.access_token')}`
         },
         success() {
           _this.refresh();

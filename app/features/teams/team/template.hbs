@@ -11,10 +11,10 @@
             </h5>
         </div>
         <div class="card-block text-xs-center">
-            <div class="btn-group" role="group" aria-label="weeks">
+            <div class="btn-group weeks" role="group" aria-label="weeks">
                 <h6>Current week is {{system.week}}</h6>
                 {{#each (range 1 17 true) as |week|}}
-                    <button class="btn btn-secondary{{if (eq week system.selectedWeek) ' active'}}" {{action 'changeWeek' week}}>{{week}}</button>
+                    <button class="btn btn-secondary{{if (eq week system.selectedWeek) ' active'}}{{if (lt week system.week) ' past'}}" {{action 'changeWeek' week}}>{{week}}</button>
                 {{/each}}
             </div>
         </div>
