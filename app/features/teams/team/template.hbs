@@ -84,34 +84,7 @@
                     <div class="card">
                         <div class="card-header">Pick Left</div>
                         <div class="card-block">
-                            <div class="row">
-                                <div class="col-xs-6 text-xs-right">QBs:</div>
-                                <div class="col-xs-6"><strong class="text-success">{{display-status test=(gt model.picks.picks_left.QB 0) text=model.picks.picks_left.QB}}</strong></div>
-                            </div>
-                            <div class="row">
-                                <div class="col-xs-6 text-xs-right">RBs:</div>
-                                <div class="col-xs-6"><strong class="text-success">{{display-status test=model.picks.picks_left.playmakers text=model.picks.picks_left.RB}}</strong></div>
-                            </div>
-                            <div class="row">
-                                <div class="col-xs-6 text-xs-right">WR/TEs:</div>
-                                <div class="col-xs-6"><strong class="text-success">{{display-status test=model.picks.picks_left.playmakers text=model.picks.picks_left.WRTE}}</strong></div>
-                            </div>
-                            <div class="row">
-                                <div class="col-xs-6 text-xs-right">Ks:</div>
-                                <div class="col-xs-6"><strong class="text-success">{{display-status test=model.picks.picks_left.playmakers text=model.picks.picks_left.K}}</strong></div>
-                            </div>
-                            <div class="row">
-                                <div class="col-xs-6 text-xs-right">Playmakers:</div>
-                                <div class="col-xs-6"><strong class="text-success">
-                                    {{display-status test=model.picks.picks_left.playmakers text=model.picks.picks_left.playmakers}}</strong></div>
-                            </div>
-                            <div class="row">
-                                <div class="col-xs-6 text-xs-right">Teams:</div>
-                                <div class="col-xs-6">
-                                    {{display-status test=(eq model.picks.picks_left.afc 1) text='AFC' divider='|'}}
-                                    {{display-status test=(eq model.picks.picks_left.nfc 1) text='NFC'}}
-                                </div>
-                            </div>
+                            {{position-picks-left data=model.picks.picks_left}}
                         </div>
                     </div>
                 </div>
@@ -119,11 +92,9 @@
                     <div class="card teams-picked">
                         <div class="card-header">AFC Teams Left</div>
                         <div class="card-block">
-                            {{#each model.picks.teams_picked.AFC as |afcTeam idx|}}
-                                    <div class="col-xs-4 text-xs-center">
-                                        {{display-status test=afcTeam.available text=afcTeam.abbr}}
-                                    </div>
-                                {{/each}}
+                          <div class="row">
+                            {{team-picks-left data=model.picks.teams_picked.afc}}
+                          </div>
                         </div>
                     </div>
                 </div>
@@ -131,13 +102,9 @@
                     <div class="card teams-picked">
                         <div class="card-header">NFC Teams Left</div>
                         <div class="card-block">
-                            <div class="row">
-                                {{#each model.picks.teams_picked.NFC as |nfcTeam idx|}}
-                                    <div class="col-xs-4 text-xs-center">
-                                        {{display-status test=nfcTeam.available text=nfcTeam.abbr}}
-                                    </div>
-                                {{/each}}
-                            </div>
+                          <div class="row">
+                            {{team-picks-left data=model.picks.teams_picked.nfc}}
+                          </div>
                         </div>
                     </div>
                 </div>

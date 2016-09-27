@@ -7,12 +7,23 @@ export default JSONAPIAdapter.extend(DataAdapterMixin, {
   namespace: ENV.api.namespace,
   authorizer: 'authorizer:oauth2',
 
-  pathForType(type) {
-    if (type == 'best-pick') {
-      return 'stats/best';
-    }
+  shouldReloadAll() {
+    return true;
+  },
 
-    return type;
+  shouldReloadRecord() {
+    return true;
+  },
+
+  pathForType(type) {
+    switch (type) {
+      case 'best-pick':
+        return 'stats/best';
+      case 'weekly-leader':
+        return 'stats/weekly';
+      default:
+        return this._super(...arguments);
+    }
   },
 
   handleResponse(status) {

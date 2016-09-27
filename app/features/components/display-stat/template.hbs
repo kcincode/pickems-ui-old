@@ -1,0 +1,9 @@
+{{#unless valid}}
+  <del class="text-danger">{{text}}</del> {{divider}}
+{{else}}
+  {{#if playmaker}}
+    <strong class="text-primary">{{text}}</strong> {{divider}}
+  {{else}}
+    {{text}} {{divider}}
+  {{/if}}
+{{/unless}}

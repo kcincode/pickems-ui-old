@@ -1,0 +1,28 @@
+<div class="row">
+    <div class="col-xs-6 text-xs-right">QBs:</div>
+    <div class="col-xs-6"><strong class="text-success">{{display-status test=(gt data.QB 0) text=data.QB}}</strong></div>
+</div>
+<div class="row">
+    <div class="col-xs-6 text-xs-right">RBs:</div>
+    <div class="col-xs-6"><strong class="text-success">{{display-status test=(gt data.RB 0) text=data.RB}}</strong></div>
+</div>
+<div class="row">
+    <div class="col-xs-6 text-xs-right">WR/TEs:</div>
+    <div class="col-xs-6"><strong class="text-success">{{display-status test=(gt data.WRTE 0) text=data.WRTE}}</strong></div>
+</div>
+<div class="row">
+    <div class="col-xs-6 text-xs-right">Ks:</div>
+    <div class="col-xs-6"><strong class="text-success">{{display-status test=(gt data.K 0) text=data.K}}</strong></div>
+</div>
+<div class="row">
+    <div class="col-xs-6 text-xs-right">Playmakers:</div>
+    <div class="col-xs-6"><strong class="text-success">
+        {{display-status test=(gt data.playmakers 0) text=data.playmakers}}</strong></div>
+</div>
+<div class="row">
+    <div class="col-xs-6 text-xs-right">Teams:</div>
+    <div class="col-xs-6">
+        {{display-status test=(eq data.afc 1) text='AFC' divider='|'}}
+        {{display-status test=(eq data.nfc 1) text='NFC'}}
+    </div>
+</div>

@@ -1,0 +1,81 @@
+<div class="card">
+  <div class="card-block text-xs-center">
+    <a class="btn btn-block btn-secondary" href="javascript:history.back()">Go back</a>
+  </div>
+  <div class="card-block text-xs-center">
+    <h2>{{model.team.name}}</h2>
+    <h4 class="card-title">Team picks up to week #{{if (gt system.week 17) '17' system.week}}</h4>
+  </div>
+</div>
+<div class="card">
+    <div class="card-block">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header">Pick Left</div>
+                    <div class="card-block">
+                        {{position-picks-left data=model.picks.picks_left}}
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card teams-picked">
+                    <div class="card-header">AFC Teams Left</div>
+                    <div class="card-block">
+                      <div class="row">
+                        {{team-picks-left data=model.picks.teams_picked.afc}}
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card teams-picked">
+                    <div class="card-header">NFC Teams Left</div>
+                    <div class="card-block">
+                        <div class="row">
+                          {{team-picks-left data=model.picks.teams_picked.nfc}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="card">
+    <div class="card-block">
+      <table class="table table-hover table-condensed">
+        <thead>
+          <tr>
+            <th>Week</th>
+            <th>Pick #1</th>
+            <th>Pts</th>
+            <th>Pick #2</th>
+            <th>Pts</th>
+            <th>Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each model.teamPicks as |row|}}
+            {{#if (eq row.week 18)}}
+              <tr class="bg-primary">
+                <td colspan="4">&nbsp;</td>
+                <td class="text-xs-right"><strong>Total:</strong></td>
+                <td class="text-xs-center"><strong>{{row.total}}</strong></td>
+              </tr>
+            {{else}}
+              <tr>
+                <td>{{row.week}}</td>
+                <td>{{display-stat playmaker=row.pick1_playmaker text=row.pick1 valid=row.pick1_valid reason=row.pick1_reason}}</td>
+                <td class="text-xs-center">{{display-stat playmaker=row.pick1_playmaker text=row.pick1_points valid=row.pick1_valid reason=row.pick1_reason}}</td>
+                <td>{{display-stat playmaker=row.pick2_playmaker text=row.pick2 valid=row.pick2_valid reason=row.pick2_reason}}</td>
+                <td class="text-xs-center">{{display-stat playmaker=row.pick2_playmaker text=row.pick2_points valid=row.pick2_valid reason=row.pick2_reason}}</td>
+                <td class="text-xs-center">{{row.total}}</td>
+              </tr>
+            {{/if}}
+          {{else}}
+            <tr><td colspan="6"><h4>No picks made by this team</h4></td></tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+</div>

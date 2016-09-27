@@ -13,7 +13,8 @@ Router.map(function() {
   this.route('contact');
   this.route('storylines');
   this.route('teams', function() {
-    this.route('team', { path: ':team' }, function() {});
+    this.route('team', { path: ':team' });
+    this.route('picks', { path: ':team/picks' });
   });
 
   this.route('stats', function() {
@@ -21,6 +22,7 @@ Router.map(function() {
     this.route('weekly');
     this.route('best');
   });
+  this.route('denied');
 });
 
 export default Router;

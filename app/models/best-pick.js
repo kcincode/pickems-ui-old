@@ -9,5 +9,6 @@ export default DS.Model.extend({
   pick1_points: attr('number'),
   pick2: attr('string'),
   pick2_playmaker: attr('boolean'),
-  pick2_points: attr('number')
+  pick2_points: attr('number'),
+  total: attr('number')
 });

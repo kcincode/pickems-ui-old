@@ -1,20 +1,31 @@
 import Ember from 'ember';
 import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-route-mixin';
 
-const { inject: { service }, RSVP, computed } = Ember;
+const { inject: { service }, RSVP } = Ember;
 
 export default Ember.Route.extend(AuthenticatedRouteMixin, {
   session: service(),
-  currentUserId: computed.alias('session.session.content.authenticated.data.user_id'),
 
   model() {
+    this.store.unloadAll('team');
+
     return RSVP.hash({
-      teams: this.store.query('team', { user: this.get('currentUserId') }),
-      users: this.store.findAll('user')
+      teams: this.store.findAll('team')
     });
   },
 
+  setupController(controller) {
+    this._super(...arguments);
+
+    controller.set('showTeamSelect', true);
+  },
+
   actions: {
+    willTransition() {
+      this.refresh();
+      return true;
+    },
+
     changeTeam(team) {
       this.controller.set('selectedTeam', team);
 
