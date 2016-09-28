@@ -6,10 +6,6 @@ import ENV from 'pickems/config/environment';
 const { inject: { service }, RSVP, isEmpty } = Ember;
 
 export default Ember.Route.extend(AuthenticatedRouteMixin, {
-  queryParams: {
-    read_only: { refreshModel: true }
-  },
-
   system: service(),
 
   model(params) {
@@ -17,13 +13,9 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
     if (isEmpty(selectedWeek)) {
       selectedWeek = this.get('system.week');
     }
-    this.set('readOnly', params.read_only);
 
     // generate the picks url
     let picksUrl = `${ENV.api.host}/${ENV.api.namespace}/picks?week=${selectedWeek}&team=${params.team}`;
-    if (params.read_only) {
-      picksUrl = `${picksUrl}&read_only=${params.read_only}`;
-    }
 
     return RSVP.hash({
       team: this.store.query('team', { slug: params.team }).then((teams) => {
@@ -32,10 +24,17 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
       picks: fetch(picksUrl, {
         type: 'GET',
         headers: {
-          'Authorization': `JWT ${this.get('session').get('session.content.authenticated.data.access_token')}`
+          'Authorization': `${ENV.api.headerKey} ${this.get('session').get('session.content.authenticated.access_token')}`
         }
       }).then((response) => response.json())
     });
+  },
+
+  afterModel(model) {
+    // if the user is not the current user access denied
+    if (parseInt(model.team.get('user.id')) !== parseInt(this.get('session.currentUserId'))) {
+      return this.transitionTo('denied');
+    }
   },
 
   setupController(controller, model) {
@@ -55,17 +54,12 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
       this.refresh();
     },
     filterPicks(term) {
-      // don't do anything if read only
-      if (this.get('readOnly')) {
-        return;
-      }
-
       // if 2 or more characters are entered
       if (term.length > 1) {
         return fetch(`${ENV.api.host}/${ENV.api.namespace}/picks-filter?term=${term}`, {
           type: 'GET',
           headers: {
-            'Authorization': `JWT ${this.get('session').get('session.content.authenticated.data.access_token')}`
+            'Authorization': `${ENV.api.headerKey} ${this.get('session').get('session.content.authenticated.access_token')}`
           }
         }).then((response) => {
           return response.json();
@@ -74,11 +68,6 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
     },
 
     updatePick(type, value) {
-      // don't do anything if read only
-      if (this.get('readOnly')) {
-        return;
-      }
-
       this.set(`currentModel.picks.${type}.selected`, value);
       let week = this.get('currentModel.picks.week');
       let number = type === 'pick1' ? 1 : 2;
@@ -91,13 +80,13 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
         method: 'POST',
         data: {
           team: teamId,
-          week: week,
-          number: number,
+          week,
+          number,
           value: JSON.stringify(value),
-          playmaker: playmaker
+          playmaker
         },
         headers: {
-          'Authorization': `JWT ${this.get('session').get('session.content.authenticated.data.access_token')}`
+          'Authorization': `${ENV.api.headerKey} ${this.get('session').get('session.content.authenticated.access_token')}`
         },
         success() {
           _this.refresh();

@@ -15,7 +15,7 @@
                 {{#each model as |row|}}
                     <tr>
                         <td>{{row.week}}</td>
-                        <td>{{link-to row.team 'teams.team' row.slug (query-params read_only=true)}}</td>
+                        <td>{{link-to row.team.name 'teams.picks' row.team.slug}}</td>
                         <td>{{row.points}}</td>
                     </tr>
                 {{/each}}

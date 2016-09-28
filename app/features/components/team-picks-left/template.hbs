@@ -1,0 +1,5 @@
+{{#each data as |team idx|}}
+    <div class="col-xs-4 text-xs-center">
+        {{display-status test=team.available text=team.abbr}}
+    </div>
+{{/each}}

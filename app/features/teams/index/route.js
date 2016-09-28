@@ -21,6 +21,9 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
         let newTeam = this.controller.get('newTeam');
         newTeam.user = user;
         newTeam.slug = stringSlug(newTeam.name);
+        newTeam.points = 0;
+        newTeam.playoffs = 0;
+        newTeam.wl = 0.000;
 
         let team = this.store.createRecord('team', newTeam);
         team.save().then(() => {

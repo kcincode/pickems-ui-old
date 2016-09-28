@@ -12,7 +12,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
     return fetch(`${ENV.api.host}/${ENV.api.namespace}/stats/rankings`, {
       type: 'GET',
       headers: {
-        'Authorization': `JWT ${this.get('session').get('session.content.authenticated.data.access_token')}`
+        'Authorization': `${ENV.api.headerKey} ${this.get('session').get('session.content.authenticated.access_token')}`
       }
     }).then((response) => {
       return response.json();
