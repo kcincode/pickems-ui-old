@@ -8,12 +8,14 @@ export default Ember.Route.extend({
   model() {
     return this.store.createRecord('user');
   },
+
   deactivate() {
     let model = this.controllerFor('register').get('model');
-    if ( (model.get('isNew') || model.get('isDirty')) && (!model.get('isSaving')) ) {
+    if ((model.get('isNew') || model.get('isDirty')) && (!model.get('isSaving'))) {
       model.rollbackAttributes();
     }
   },
+
   actions: {
     register() {
       let model = this.get('currentModel');
@@ -22,17 +24,13 @@ export default Ember.Route.extend({
       let email = model.get('email').toLowerCase();
       model.set('email', email);
 
-      // set the usename from the email
-      let username = email.substring(0, email.indexOf('@'));
-      model.set('username', username);
-
       model.save().then(() => {
         // Successful Save
         this.transitionTo('login');
         this.get('flashMessages').success('Registered! Please login now');
       }).catch((resp) => {
         // Error(s) while saving
-        const { errors } = resp;
+        let { errors } = resp;
         this.get('flashMessages').danger(errors.mapBy('detail').join(', '));
       });
     }

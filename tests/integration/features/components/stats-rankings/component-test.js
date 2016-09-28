@@ -15,7 +15,7 @@ test('it renders', function(assert) {
     { rank: 3, team: 'Test Team #3', team_id: 3, team_slug: 'test-team-3', points: 130, wl: '0.940', playoff: 18 },
     { rank: 4, team: 'Test Team #4', team_id: 4, team_slug: 'test-team-4', points: 120, wl: '0.940', playoff: 12 },
     { rank: 5, team: 'Test Team #5', team_id: 5, team_slug: 'test-team-5', points: 110, wl: '0.940', playoff: 6 },
-    { rank: 6, team: 'Test Team #6', team_id: 6, team_slug: 'test-team-6', points: 100, wl: '0.940', playoff: 0 },
+    { rank: 6, team: 'Test Team #6', team_id: 6, team_slug: 'test-team-6', points: 100, wl: '0.940', playoff: 0 }
   ]);
   this.set('limit', 25);
 

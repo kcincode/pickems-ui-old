@@ -25,10 +25,10 @@
                     {{else}}
                         <tr>
                             <td>{{row.week}}</td>
-                            <td>{{display-stat-playmaker playmaker=row.pick1_playmaker text=row.pick1}}</td>
-                            <td class="text-xs-center">{{display-stat-playmaker playmaker=row.pick1_playmaker text=row.pick1_points}}</td>
-                            <td>{{display-stat-playmaker playmaker=row.pick2_playmaker text=row.pick2}}</td>
-                            <td class="text-xs-center">{{display-stat-playmaker playmaker=row.pick2_playmaker text=row.pick2_points}}</td>
+                            <td>{{display-stat playmaker=row.pick1_playmaker text=row.pick1}}</td>
+                            <td class="text-xs-center">{{display-stat playmaker=row.pick1_playmaker text=row.pick1_points}}</td>
+                            <td>{{display-stat playmaker=row.pick2_playmaker text=row.pick2}}</td>
+                            <td class="text-xs-center">{{display-stat playmaker=row.pick2_playmaker text=row.pick2_points}}</td>
                             <td class="text-xs-center">{{row.total}}</td>
                         </tr>
                     {{/if}}

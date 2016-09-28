@@ -9,8 +9,7 @@ export default PageObject.create({
   visit: visitable('/register'),
 
   email: fillable('#email'),
-  first_name: fillable('#first_name'),
-  last_name: fillable('#last_name'),
+  name: fillable('#name'),
   password: fillable('#password'),
   passwordConfirmation: fillable('#passwordConfirmation'),
 
