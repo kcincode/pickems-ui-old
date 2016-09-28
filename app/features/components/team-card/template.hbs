@@ -1,0 +1,20 @@
+<div class="card">
+    <div class="card-block text-xs-center">
+        <h3>{{team.team.name}}</h3>
+        <h5>
+            {{#if team.team.paid}}
+                <label class="d-inline bg-success p-x-3 p-y-1">Paid</label>
+            {{else}}
+                <label class="d-inline bg-danger p-x-3 p-y-1">Not Paid</label>
+            {{/if}}
+        </h5>
+    </div>
+    <div class="card-block text-xs-center">
+        <div class="btn-group weeks" role="group" aria-label="weeks">
+            <h6>Current week is {{system.week}}</h6>
+            {{#each (range 1 17 true) as |week|}}
+                <button class="btn btn-secondary{{if (eq week system.selectedWeek) ' active'}}{{if (lt week system.week) ' past'}}" {{action 'changeWeek' week}}>{{week}}</button>
+            {{/each}}
+        </div>
+    </div>
+</div>
