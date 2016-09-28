@@ -19,9 +19,8 @@ script:
 before_deploy:
 - ember build -prod
 env:
-- SURGE_TOKEN=bb46b98b194e39d8df028cbe25213968
-- SURGE_LOGIN=nick.felicelli@gmail.com
+- SURGE_TOKEN=bb46b98b194e39d8df028cbe25213968 SURGE_LOGIN=nick.felicelli@gmail.com
 deploy:
   provider: surge
   project: ./dist/
-  domain: pickems.surge.sh  
+  domain: pickems.surge.sh
