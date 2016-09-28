@@ -3,8 +3,30 @@
     <a class="btn btn-block btn-secondary" href="javascript:history.back()">Go back</a>
   </div>
   <div class="card-block text-xs-center">
-    <h2>{{model.team.name}}</h2>
-    <h4 class="card-title">Team picks up to week #{{if (gt system.week 17) '17' system.week}}</h4>
+      <div class="row">
+        <div class="col-xs-12">
+          <h2 class="p-b-2">{{model.team.name}}</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4 text-xs-center">
+            <h2>{{model.team.points}}</h2>
+            <h5><small class="text-muted">POINTS</small></h5>
+        </div>
+        <div class="col-md-4">
+          <h5>
+              {{#if model.team.paid}}
+                  <label class="d-inline bg-success m-y-3 p-a-1">Paid</label>
+              {{else}}
+                  <label class="d-inline bg-danger m-y-3 p-a-1">Not Paid</label>
+              {{/if}}
+          </h5>
+        </div>
+        <div class="col-md-4 text-xs-center">
+            <h2>{{model.team.wl}}</h2>
+            <h5><small class="text-muted">W/L</small></h5>
+        </div>
+      </div>
   </div>
 </div>
 <div class="card">
@@ -43,6 +65,7 @@
 </div>
 <div class="card">
     <div class="card-block">
+      <h4 class="card-title">Team picks up to week #{{if (gt system.week 17) '17' system.week}}</h4>
       <table class="table table-hover table-condensed">
         <thead>
           <tr>

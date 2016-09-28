@@ -6,9 +6,9 @@ const { attr, hasMany } = DS;
 
 const Validations = buildValidations({
   name: fullname,
-  email: email,
-  password: password,
-  passwordConfirmation: passwordConfirmation,
+  email,
+  password,
+  passwordConfirmation
 });
 
 export default DS.Model.extend(Validations, {
@@ -18,5 +18,5 @@ export default DS.Model.extend(Validations, {
   passwordConfirmation: attr('string'),
   is_staff: attr('boolean'),
 
-  teams: hasMany('team', { async: true }),
+  teams: hasMany('team', { async: true })
 });
