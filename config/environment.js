@@ -10,6 +10,12 @@ module.exports = function(environment) {
     contactUrl: 'https://www.facebook.com/groups/FantasyPickems/',
     paypalEmail: 'rimlerm@gmail.com',
     locationType: 'auto',
+    'ember-simple-auth': {
+      authorizer: 'authorizer:token',
+      authenticationRoute: 'login',
+      routeIfAlreadyAuthenticated: 'storylines',
+      routeAfterAuthentication: 'storylines'
+    },
     EmberENV: {
       FEATURES: {
         // Here you can enable experimental features on an ember canary build
@@ -38,12 +44,6 @@ module.exports = function(environment) {
       headerKey: 'Bearer'
     };
 
-    ENV['ember-simple-auth'] = {
-      authenticationRoute: 'login',
-      routeIfAlreadyAuthenticated: 'storylines',
-      routeAfterAuthentication: 'storylines'
-    };
-
     ENV['ember-cli-mirage'] = {
       enabled: false
     };
@@ -51,18 +51,14 @@ module.exports = function(environment) {
 
   if (environment === 'test') {
     // Testem prefers this...
-    ENV.rootUrl = '/';
     ENV.locationType = 'none';
 
     ENV.api = {
       host: 'http://localhost:4000',
       namespace: 'api',
       auth: 'token',
-      refresh: 'refresh'
-    };
-
-    ENV['ember-simple-auth'] = {
-      authorizer: 'authorizer:token'
+      refresh: 'refresh',
+      headerKey: 'Bearer'
     };
 
     ENV['ember-simple-auth-token'] = {
@@ -82,7 +78,22 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
+    ENV.api = {
+      host: 'https://pickems-api.herokuapp.com',
+      namespace: 'api',
+      auth: 'token',
+      refresh: 'refresh',
+      headerKey: 'Bearer'
+    };
 
+    ENV['ember-simple-auth-token'] = {
+      refreshAccessTokens: true,
+      timeFactor: 1000,
+      refreshLeeway: 300,
+      serverTokenEndpoint: `${ENV.api.host}/${ENV.api.namespace}/${ENV.api.auth}`,
+      serverTokenRefreshEndpoint: `${ENV.api.host}/${ENV.api.namespace}/${ENV.api.refresh}`,
+      identificationField: 'email'
+    };
   }
 
   return ENV;
