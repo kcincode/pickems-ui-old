@@ -67,28 +67,46 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
       }
     },
 
-    updatePick(type, value) {
-      this.set(`currentModel.picks.${type}.selected`, value);
-      let week = this.get('currentModel.picks.week');
-      let number = type === 'pick1' ? 1 : 2;
-      let teamId = this.get('currentModel.team.id');
-      let playmaker = this.get('currentModel.picks.${type}.playmaker');
+    updatePlaymaker(type) {
+      this.toggleProperty(`currentModel.picks.${type}.playmaker`);
+      this.send('updatePicks');
+    },
+
+    updatePicks(type = null, value = null) {
+      if (type) {
+        this.set(`currentModel.picks.${type}.selected`, value);
+      }
+
+      // get the picks data for pick #1
+      let pick1 = this.get('currentModel.picks.pick1.selected');
+      if (pick1) {
+        pick1.playmaker = this.get('currentModel.picks.pick1.playmaker');
+      }
+
+      // get the picks data for pick #2
+      let pick2 = this.get('currentModel.picks.pick2.selected');
+      if (pick2) {
+        pick2.playmaker = this.get('currentModel.picks.pick2.playmaker');
+      }
+
+      // setup the post data
+      let data = {
+        team: this.get('currentModel.team.slug'),
+        week: this.get('currentModel.picks.week'),
+        pick1: pick1 ? pick1 : { id: null, type: null, text: null, playmaker: null },
+        pick2: pick2 ? pick2 : { id: null, type: null, text: null, playmaker: null }
+      };
 
       let _this = this;
       return Ember.$.ajax({
-        url: `${ENV.api.host}/${ENV.api.namespace}/team-picks`,
+        url: `${ENV.api.host}/${ENV.api.namespace}/picks`,
         method: 'POST',
-        data: {
-          team: teamId,
-          week,
-          number,
-          value: JSON.stringify(value),
-          playmaker
-        },
+        data,
         headers: {
           'Authorization': `${ENV.api.headerKey} ${this.get('session').get('session.content.authenticated.access_token')}`
         },
         success() {
+          // _this.get('flashMessages').success('Updated picks');
           _this.refresh();
         },
         error() {
