@@ -50,7 +50,7 @@
                                 onchange=(route-action 'updatePicks' 'pick2') as |pick|}}
                                 {{display-status test=pick.available text=pick.text}}
                             {{/power-select}}
-                            {{input id="pick2-playmaker" type="checkbox" checked=model.picks.pick2.playmaker disabled=model.picks.pick2.disabled change=(route-action 'updatePlaymaker' 'pick1')}} <label for="pick2-playmaker">Denote as Playmaker</label>
+                            {{input id="pick2-playmaker" type="checkbox" checked=model.picks.pick2.playmaker disabled=model.picks.pick2.disabled change=(route-action 'updatePlaymaker' 'pick2')}} <label for="pick2-playmaker">Denote as Playmaker</label>
                             {{#if model.picks.pick2.reason}}
                                 <div class="text-danger">
                                     {{model.picks.pick2.reason}}
