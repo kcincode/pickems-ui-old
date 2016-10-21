@@ -17,14 +17,19 @@
                                 selected=model.picks.pick1.selected
                                 search=(route-action 'filterPicks')
                                 searchPlaceholder='Type at least 3 characters to search'
-                                onchange=(route-action 'updatePick' 'pick1') as |pick|}}
+                                onchange=(route-action 'updatePicks' 'pick1') as |pick|}}
                                 {{display-status test=pick.available text=pick.text}}
                             {{/power-select}}
-                            {{input id="pick1-playmaker" type="checkbox" checked=model.picks.pick1.playmaker disabled=model.picks.pick1.disabled}} <label for="pick1-playmaker">Denote as Playmaker</label>
+                            {{input id="pick1-playmaker" type="checkbox" checked=model.picks.pick1.playmaker disabled=model.picks.pick1.disabled change=(route-action 'updatePlaymaker' 'pick1')}} <label for="pick1-playmaker">Denote as Playmaker</label>
                             {{#if model.picks.pick1.reason}}
                                 <div class="text-danger">
                                     {{model.picks.pick1.reason}}
                                 </div>
+                            {{/if}}
+                            {{#if pick1_message}}
+                              <div class="alert alert-{{pick1_message_type}}">
+                                {{pick1_message}}
+                              </div>
                             {{/if}}
                         </div>
                     </div>
@@ -42,14 +47,19 @@
                                 selected=model.picks.pick2.selected
                                 search=(route-action 'filterPicks')
                                 searchPlaceholder='Type at least 3 characters to search'
-                                onchange=(route-action 'updatePick' 'pick2') as |pick|}}
+                                onchange=(route-action 'updatePicks' 'pick2') as |pick|}}
                                 {{display-status test=pick.available text=pick.text}}
                             {{/power-select}}
-                            {{input id="pick2-playmaker" type="checkbox" checked=model.picks.pick2.playmaker disabled=model.picks.pick2.disabled}} <label for="pick2-playmaker">Denote as Playmaker</label>
+                            {{input id="pick2-playmaker" type="checkbox" checked=model.picks.pick2.playmaker disabled=model.picks.pick2.disabled change=(route-action 'updatePlaymaker' 'pick1')}} <label for="pick2-playmaker">Denote as Playmaker</label>
                             {{#if model.picks.pick2.reason}}
                                 <div class="text-danger">
                                     {{model.picks.pick2.reason}}
                                 </div>
+                            {{/if}}
+                            {{#if pick2_message}}
+                              <div class="alert alert-{{pick2_message_type}}">
+                                {{pick2_message}}
+                              </div>
                             {{/if}}
                         </div>
                     </div>
@@ -100,27 +110,33 @@
                 </div>
             </div>
             {{#each-in model.picks.schedule as |day data| }}
-                <div class="row heading">
-                    <div class="col-xs-12 col-md-10 offset-md-1 bg-info">
-                        {{day}}
+              <div class="row">
+                <div class="col-xs-10 offset-xs-1">
+                  <div class="card">
+                    <div class="card-header">
+                      {{day}}
                     </div>
+                    <div class="card-block">
+                      {{#each data as |game|}}
+                        <div class="row">
+                            <div class="col-xs-3 offset-md-1">
+                                {{game.away}}
+                            </div>
+                            <div class="col-xs-2 text-xs-center">
+                                <strong>VS</strong>
+                            </div>
+                            <div class="col-xs-3">
+                                {{game.home}}
+                            </div>
+                            <div class="col-xs-2 text-xs-right">
+                                <a target="_new" href="{{game.url}}">Game Link {{fa-icon 'link'}}</a>
+                            </div>
+                        </div>
+                      {{/each}}
+                    </div>
+                  </div>
                 </div>
-                {{#each data as |game|}}
-                    <div class="row">
-                        <div class="col-xs-3 offset-md-1">
-                            {{game.away}}
-                        </div>
-                        <div class="col-xs-2 text-xs-center">
-                            <strong>VS</strong>
-                        </div>
-                        <div class="col-xs-3">
-                            {{game.home}}
-                        </div>
-                        <div class="col-xs-2 text-xs-right">
-                            <a target="_new" href="{{game.url}}">Game Link {{fa-icon 'link'}}</a>
-                        </div>
-                    </div>
-                {{/each}}
+              </div>
             {{/each-in}}
         </div>
     </div>

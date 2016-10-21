@@ -29,7 +29,8 @@ export default Ember.Route.extend(Validations, UnauthenticatedRouteMixin, {
       };
 
       this.get('session').authenticate('authenticator:pickems', credentials.email, credentials.password).then(() => {
-        this.set('system.week', this.get('session.session.content.authenticated.data.current_week'));
+        this.set('session.currentUserId', this.get('session.session.content.authenticated.user_id'));
+        this.set('system.week', parseInt(this.get('session.session.content.authenticated.current_week')));
       }).catch(() => {
         this.get('flashMessages').danger('Invalid email and/or password');
       });

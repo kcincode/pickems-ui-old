@@ -28,9 +28,9 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
         let team = this.store.createRecord('team', newTeam);
         team.save().then(() => {
           this.get('flashMessages').success(`Team ${team.get('name')} created`);
-          this.transitionTo('teams.team', team.slug);
-        }, (error) => {
-          console.error(error);
+          this.controller.set('newTeam', {});
+          this.transitionTo('teams.team', team.get('slug'));
+        }, () => {
           this.get('flashMessages').danger('Could not create team');
         });
       });
