@@ -1,3 +1,5 @@
+@import 'open-color.scss';
+@import 'variables';
 @import 'bootstrap';
 @import 'font-awesome';
 
@@ -5,7 +7,6 @@ $ember-power-select-trigger-ltr-padding: 0 0.5rem;
 @import 'ember-power-select/themes/bootstrap';
 @import "ember-power-select";
 
-@import 'variables';
 @import 'others';
 
 body {

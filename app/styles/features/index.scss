@@ -1,0 +1,16 @@
+.home-page {
+  .title {
+    text-align: center;
+    font-size: 5rem;
+  }
+
+  .section {
+    margin: -1rem;
+    padding: 3rem 2rem;
+
+    &.dark {
+      background: lighten(black, 10%);
+      color: white;
+    }
+  }
+}

@@ -1,17 +1,18 @@
-/*jshint node:true*/
+/* jshint node:true*/
 /* global require, module */
-var EmberApp = require('ember-cli/lib/broccoli/ember-app');
+let EmberApp = require('ember-cli/lib/broccoli/ember-app');
 
-module.exports = function (defaults) {
-  var app = new EmberApp(defaults, {
+module.exports = function(defaults) {
+  let app = new EmberApp(defaults, {
     sassOptions: {
       includePaths: [
         'bower_components/bootstrap/scss',
-      ],
+        'node_modules/open-color'
+      ]
     },
     'ember-font-awesome': {
-      useScss: true,
-    },
+      useScss: true
+    }
   });
 
   // Use `app.import` to add additional libraries to the generated
