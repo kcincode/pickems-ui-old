@@ -1,0 +1,81 @@
+<div class="home-page">
+  <div class="row section dark text-xs-center">
+    <h1 class="p-y-1 title">Fantasy Pickems</h1>
+    <h4 class="subtitle text-muted">Welcome to the fantasy pickems page. You can sign up to start playing.</h4>
+
+    <div class="row m-t-3">
+      <div class="col-md-6 offset-md-3">
+        {{#link-to 'register' class="btn btn-primary btn-block"}}{{fa-icon 'pencil' fixedWidth=true}} Sign Up{{/link-to}}
+        <small class="text-muted">All you need is an email, name, and password</small>
+      </div>
+    </div>
+  </div>
+  <div class="row section">
+    <div class="col-md-4">
+      <div class="card-block">
+        <h4 class="card-heading">Counts</h4>
+        <hr class="card-hr"/>
+
+        <div class="row">
+          <div class="col-xs-3">
+            <h6 class="text-muted">Owners:</h6>
+          </div>
+          <div class="col-xs-9 text-xs-right">
+            <h6>{{model.owners}}</h6>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-xs-3">
+            <h6 class="text-muted">Teams:</h6>
+          </div>
+          <div class="col-xs-9 text-xs-right">
+            <h6>{{model.teams.total}} <small>({{model.teams.paid}} paid)</small></h6>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-xs-3">
+            <h6 class="text-muted">Money:</h6>
+          </div>
+          <div class="col-xs-9 text-xs-right">
+            <h6>${{model.money}} <small>(only for paid teams)</small></h6>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card-block">
+        <h4 class="card-heading">What is this?</h4>
+        <hr class="card-hr"/>
+        <p>
+          This game is a different type of fantasy football game that does not
+          require you to have to select the best possible team for the entire
+          year. You are able to select whoever you want each week.
+        </p>
+        <p class="text-xs-center">
+          {{#link-to 'rules'}}
+            {{fa-icon 'list-alt'}} Rules
+          {{/link-to}}
+        </p>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card-block">
+        <h4 class="card-heading">Contact Us</h4>
+        <hr class="card-hr"/>
+        <p>
+          If you would like to ask a question, having a problem, or just want
+          to give feedback you can send us a message with the contact form.
+        </p>
+        <p class="text-xs-center">
+          {{#link-to 'contact'}}
+            {{fa-icon 'facebook'}} Contact Us
+          {{/link-to}}
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
