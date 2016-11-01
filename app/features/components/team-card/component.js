@@ -6,6 +6,7 @@ export default Ember.Component.extend({
   classNames: ['card'],
   system: service(),
   changeWeek: 'changeWeek',
+  showWeeks: true,
 
   actions: {
     changeWeek(week) {
