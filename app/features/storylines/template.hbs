@@ -6,15 +6,53 @@
 
   <div class="row mb-3">
     {{#each weekStories as |storyline|}}
-      <div class="col-md-6">
-        <div class="card">
-          <div class="card-block">
-            <h4 class="card-heading">{{storyline.title}}</h4>
-            <p>{{storyline.story}}</p>
-            <p class="text-xs-right">- <span class="text-info">{{storyline.user.name}}</span></p>
+      {{#if (and storyline.showDeleteConfirmation isAdmin)}}
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-block">
+              <h4 class="card-heading text-danger text-xs-center my-2">Are you sure you want to delete this storyline?</h4>
+            </div>
+            {{#if isAdmin}}
+              <div class="card-footer bg-danger text-xs-center">
+                <span class="btn btn-secondary" {{action 'deleteStoryline' storyline}}>Yup, delete it!</span>
+                <span class="btn btn-danger" {{action (toggle 'showDeleteConfirmation' storyline)}}>No, I don't</span>
+              </div>
+            {{/if}}
           </div>
         </div>
-      </div>
+      {{else}}
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-block">
+              {{#if storyline.isEditing}}
+                <div class="form-group">
+                  <label>Title</label>
+                  {{input type="text" value=storyline.title class="form-control"}}
+                </div>
+                <div class="form-group">
+                  <label>Story</label>
+                  {{textarea rows=10 value=storyline.story class="form-control"}}
+                </div>
+              {{else}}
+                <h4 class="card-heading mb-1">{{storyline.title}}</h4>
+                <p>{{html-newlines storyline.story}}</p>
+                <p class="text-xs-right">- <span class="text-info">{{storyline.user.name}}</span></p>
+              {{/if}}
+            </div>
+            {{#if isAdmin}}
+              <div class="card-footer">
+                {{#if storyline.isEditing}}
+                  <div class="col-xs-6 text-primary" {{action 'saveStoryline' storyline}}>Save Update</div>
+                  <div class="col-xs-6 text-xs-right" {{action 'cancelEditing' storyline}}>Cancel</div>
+                {{else}}
+                  <div class="col-xs-6 text-primary" {{action (toggle 'isEditing' storyline)}}>Update</div>
+                  <div class="col-xs-6 text-xs-right text-danger" {{action (toggle 'showDeleteConfirmation' storyline)}}>Delete</div>
+                {{/if}}
+              </div>
+            {{/if}}
+          </div>
+        </div>
+      {{/if}}
     {{/each}}
   </div>
 {{/each-in}}

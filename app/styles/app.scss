@@ -9,6 +9,10 @@ $ember-power-select-trigger-ltr-padding: 0 0.5rem;
 
 @import 'others';
 
+[data-ember-action] {
+  cursor: pointer;
+}
+
 body {
     background-color: darken($white, 5%);
 }

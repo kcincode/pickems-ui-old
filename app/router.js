@@ -23,6 +23,10 @@ Router.map(function() {
     this.route('best');
   });
   this.route('denied');
+
+  this.route('admin', function() {
+    this.route('status');
+  });
 });
 
 export default Router;

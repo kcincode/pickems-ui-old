@@ -25,5 +25,11 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
     // set the current week
     this.set('system.week', parseInt(this.get('session.session.content.authenticated.current_week')));
     this.setupUserId();
+  },
+
+  actions: {
+    willTransition() {
+      this.set('system.showAdminMenu', false);
+    }
   }
 });
