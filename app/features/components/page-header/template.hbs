@@ -32,7 +32,8 @@
                 <li class="nav-item">
                     {{link-to 'Contact' 'contact' class='nav-link'}}
                 </li>
-                {{#if sessionUser.user.is_staff}}
+                {{log session.currentUser}}
+                {{#if (eq session.currentRole 'admin')}}
                     <li class="nav-item">
                         <a class="nav-link" href="#">Admin</a>
                     </li>

@@ -13,7 +13,12 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
   },
 
   setupUserId() {
-    this.set('session.currentUserId', this.get('session.session.content.authenticated.user_id'));
+    if (this.get('session.isAuthenticated')) {
+      this.set('session.currentRole', this.get('session.session.content.authenticated.role'));
+      this.set('session.currentUser', this.store.find('user', this.get('session.session.content.authenticated.user_id'))).catch(() => {
+        this.get('session').invalidate();
+      });
+    }
   },
 
   beforeModel() {

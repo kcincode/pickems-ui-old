@@ -1,1 +1,20 @@
-{{outlet}}
+<h2>Weekly Storylines</h2>
+
+{{#each-in storylines as |week weekStories|}}
+  <h2 class="mt-2">Week {{week}}</h2>
+  <hr/>
+
+  <div class="row mb-3">
+    {{#each weekStories as |storyline|}}
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-block">
+            <h4 class="card-heading">{{storyline.title}}</h4>
+            <p>{{storyline.story}}</p>
+            <p class="text-xs-right">- <span class="text-info">{{storyline.user.name}}</span></p>
+          </div>
+        </div>
+      </div>
+    {{/each}}
+  </div>
+{{/each-in}}

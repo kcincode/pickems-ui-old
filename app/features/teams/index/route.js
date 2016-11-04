@@ -17,22 +17,20 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
     createTeam() {
       this.get('flashMessages').clearMessages();
 
-      this.store.find('user', this.get('session.currentUserId')).then((user) => {
-        let newTeam = this.controller.get('newTeam');
-        newTeam.user = user;
-        newTeam.slug = stringSlug(newTeam.name);
-        newTeam.points = 0;
-        newTeam.playoffs = 0;
-        newTeam.wl = 0.000;
+      let newTeam = this.controller.get('newTeam');
+      newTeam.user = this.get('session.currentUser');
+      newTeam.slug = stringSlug(newTeam.name);
+      newTeam.points = 0;
+      newTeam.playoffs = 0;
+      newTeam.wl = 0.000;
 
-        let team = this.store.createRecord('team', newTeam);
-        team.save().then(() => {
-          this.get('flashMessages').success(`Team ${team.get('name')} created`);
-          this.controller.set('newTeam', {});
-          this.transitionTo('teams.team', team.get('slug'));
-        }, () => {
-          this.get('flashMessages').danger('Could not create team');
-        });
+      let team = this.store.createRecord('team', newTeam);
+      team.save().then(() => {
+        this.get('flashMessages').success(`Team ${team.get('name')} created`);
+        this.controller.set('newTeam', {});
+        this.transitionTo('teams.team', team.get('slug'));
+      }, () => {
+        this.get('flashMessages').danger('Could not create team');
       });
     }
   }
