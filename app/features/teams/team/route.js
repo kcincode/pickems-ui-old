@@ -32,7 +32,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
 
   afterModel(model) {
     // if the user is not the current user access denied
-    if (parseInt(model.team.get('user.id')) !== parseInt(this.get('session.currentUserId'))) {
+    if (parseInt(model.team.get('user.id')) !== parseInt(this.get('session.currentUser.id'))) {
       return this.transitionTo('denied');
     }
   },

@@ -13,12 +13,23 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
   },
 
   setupUserId() {
-    this.set('session.currentUserId', this.get('session.session.content.authenticated.user_id'));
+    if (this.get('session.isAuthenticated')) {
+      this.set('session.currentRole', this.get('session.session.content.authenticated.role'));
+      this.set('session.currentUser', this.store.find('user', this.get('session.session.content.authenticated.user_id'))).catch(() => {
+        this.get('session').invalidate();
+      });
+    }
   },
 
   beforeModel() {
     // set the current week
     this.set('system.week', parseInt(this.get('session.session.content.authenticated.current_week')));
     this.setupUserId();
+  },
+
+  actions: {
+    willTransition() {
+      this.set('system.showAdminMenu', false);
+    }
   }
 });

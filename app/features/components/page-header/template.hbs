@@ -24,7 +24,7 @@
                 </li>
             {{/if}}
         </ul>
-        <ul class="nav navbar-nav pull-xs-right">
+        <ul class="nav navbar-nav float-xs-right">
             {{#if session.isAuthenticated}}
                 <li class="nav-item">
                     {{link-to 'Rules' 'rules' class='nav-link'}}
@@ -32,9 +32,15 @@
                 <li class="nav-item">
                     {{link-to 'Contact' 'contact' class='nav-link'}}
                 </li>
-                {{#if sessionUser.user.is_staff}}
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Admin</a>
+                {{#if (eq session.currentRole 'admin')}}
+                    <li class="nav-item dropdown open">
+                        <a class="nav-link dropdown-toggle" {{action (toggle 'showAdminMenu' system)}}>Admin</a>
+
+                        {{#if system.showAdminMenu}}
+                          <div class="dropdown-menu dropdown-menu-right">
+                              {{link-to 'Paid Status' 'admin.status' class="dropdown-item"}}
+                          </div>
+                        {{/if}}
                     </li>
                 {{/if}}
                 <li class="nav-item">
