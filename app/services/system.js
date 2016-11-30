@@ -10,5 +10,6 @@ export default Ember.Service.extend({
   },
   week: 1,
   selectedWeek: 1,
-  paypal: 'rimlerm@gmail.com'
+  paypal: 'rimlerm@gmail.com',
+  showAdminMenu: false
 });
