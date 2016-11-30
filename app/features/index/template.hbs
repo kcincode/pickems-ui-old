@@ -1,14 +1,16 @@
 <div class="home-page">
   <div class="row section dark text-xs-center">
     <h1 class="py-1 title">Fantasy Pickems</h1>
-    <h4 class="subtitle text-muted">Welcome to the fantasy pickems page. You can sign up to start playing.</h4>
+    <h4 class="subtitle text-muted">Welcome to the fantasy pickems page. {{#unless session.isAuthenticated}}You can sign up to start playing.{{/unless}}</h4>
 
-    <div class="row m-t-3">
-      <div class="col-md-6 offset-md-3">
-        {{#link-to 'register' class="btn btn-primary btn-block"}}{{fa-icon 'pencil' fixedWidth=true}} Sign Up{{/link-to}}
-        <small class="text-muted">All you need is an email, name, and password</small>
+    {{#unless session.isAuthenticated}}
+      <div class="row m-t-3">
+        <div class="col-md-6 offset-md-3">
+          {{#link-to 'register' class="btn btn-primary btn-block"}}{{fa-icon 'pencil' fixedWidth=true}} Sign Up{{/link-to}}
+          <small class="text-muted">All you need is an email, name, and password</small>
+        </div>
       </div>
-    </div>
+    {{/unless}}
   </div>
   <div class="row section">
     <div class="col-md-4">

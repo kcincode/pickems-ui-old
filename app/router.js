@@ -25,7 +25,7 @@ Router.map(function() {
   this.route('denied');
 
   this.route('admin', function() {
-    this.route('status');
+    this.route('status', { path: 'status/:status' });
   });
 });
 
