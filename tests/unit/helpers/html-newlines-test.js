@@ -6,7 +6,7 @@ module('Unit | Helper | html newlines');
 
 // Replace this with your real tests.
 test('it works', function(assert) {
-  let result = htmlNewlines([42]);
+  let result = htmlNewlines(['Test\nTest']);
   assert.ok(result);
 });
 

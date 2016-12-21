@@ -16,6 +16,8 @@ export default Ember.Route.extend({
   },
 
   setupController(controller) {
+    this._super(...arguments);
+
     controller.set('session', this.get('session'));
   }
 });

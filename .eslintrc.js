@@ -14,6 +14,6 @@ module.exports = {
   rules: {
     'camelcase': 0,
     'ember-suave/require-access-in-comments': 0,
-    'ember-suave/no-direct-property-access': 0,
+    'ember-suave/no-direct-property-access': 0
   }
 };
