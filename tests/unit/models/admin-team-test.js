@@ -2,7 +2,7 @@ import { moduleForModel, test } from 'ember-qunit';
 
 moduleForModel('admin-team', 'Unit | Model | admin team', {
   // Specify the other units that are required for this test.
-  needs: []
+  needs: ['model:user']
 });
 
 test('it exists', function(assert) {
