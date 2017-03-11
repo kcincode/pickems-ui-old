@@ -1,0 +1,23 @@
+<div class="row">
+  <div class="col-md-2 text-md-right">
+    <label class="label-pad-top">{{label}}</label>
+  </div>
+  <div class="col-md-7">
+    {{#power-select
+        allowClear=true
+        triggerClass='form-control'
+        searchField='text'
+        disabled=system.hasPlayoffsStarted
+        placeholder="Select a pick"
+        selected=selected
+        options=options
+        onchange=(action 'updatePick') as |pick|}}
+        {{pick.text}}
+    {{/power-select}}
+  </div>
+  <div class="col-md-3 nudge-down">
+    {{#if (and selected shouldShowPlaymakerCheck)}}
+      <span role="button" class="{{if isPlaymaker 'text-primary'}}" onClick={{action 'updatePlaymaker' pick.id}}>{{fa-icon (if isPlaymaker 'check-square-o' 'square-o')}} Playmaker</span>
+    {{/if}}
+  </div>
+</div>

@@ -27,6 +27,9 @@ Router.map(function() {
   this.route('admin', function() {
     this.route('status', { path: 'status/:status' });
   });
+  this.route('playoffs', function() {
+    this.route('show', { path: ':team' });
+  });
 });
 
 export default Router;

@@ -24,6 +24,7 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
   beforeModel() {
     // set the current week
     this.set('system.week', parseInt(this.get('session.session.content.authenticated.current_week')));
+    this.set('system.hasPlayoffsStarted', this.get('session.session.content.authenticated.hasPlayoffsStarted'));
     this.setupUserId();
   },
 

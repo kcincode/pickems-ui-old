@@ -12,6 +12,11 @@
                 <li class="nav-item">
                     {{link-to 'Teams' 'teams' class='nav-link'}}
                 </li>
+                {{#if (gte system.week 17)}}
+                    <li class="nav-item">
+                        {{link-to 'Playoffs' 'playoffs' class='nav-link'}}
+                    </li>
+                {{/if}}
                 <li class="nav-item">
                     {{link-to 'Stats' 'stats.rankings' class='nav-link'}}
                 </li>

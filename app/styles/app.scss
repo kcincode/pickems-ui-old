@@ -25,6 +25,10 @@ input {
     text-align: center;
 }
 
+.nudge-down {
+    padding-top: 0.25rem;
+}
+
 .page-content {
     min-height: 20rem;
     padding: 0.9375rem 0.9375rem 6rem 0.9375rem;
@@ -65,4 +69,8 @@ input {
 .bg-info,
 .bg-danger {
   color: white;
+}
+
+.label-pad-top {
+    padding-top: 0.4rem;
 }
