@@ -1,0 +1,36 @@
+<div class="row">
+  <div class="col-md-8 offset-md-2">
+    <div class="card">
+      <div class="card-block">
+        {{#if system.hasPlayoffsStarted}}
+          <div class="alert alert-info">Playoffs have started you may not make any changes</div>
+        {{/if}}
+        <h3 class="card-text-heading text-xs-center">Playoff Picks</h3>
+        {{#unless model.picks.valid}}
+          <div class="alert alert-danger">
+            {{model.picks.reason}}
+          </div>
+        {{else}}
+          <div class="alert alert-success">Your picks are valid, you are good to go.</div>
+        {{/unless}}
+      </div>
+      <div class="card-block">
+        {{playoff-pick label='QB #1' options=model.validPicks.qb pick=model.picks.qb1 playmakers=model.picks.playmakers update=(route-action 'updatePicks' 'qb1') playmaker=(route-action 'updatePicks' 'playmakers')}}
+        {{playoff-pick label='QB #2' options=model.validPicks.qb pick=model.picks.qb2 playmakers=model.picks.playmakers update=(route-action 'updatePicks' 'qb2') playmaker=(route-action 'updatePicks' 'playmakers')}}
+
+        {{playoff-pick label='RB #1' options=model.validPicks.rb pick=model.picks.rb1 playmakers=model.picks.playmakers update=(route-action 'updatePicks' 'rb1') playmaker=(route-action 'updatePicks' 'playmakers')}}
+        {{playoff-pick label='RB #2' options=model.validPicks.rb pick=model.picks.rb2 playmakers=model.picks.playmakers update=(route-action 'updatePicks' 'rb2') playmaker=(route-action 'updatePicks' 'playmakers')}}
+        {{playoff-pick label='RB #3' options=model.validPicks.rb pick=model.picks.rb3 playmakers=model.picks.playmakers update=(route-action 'updatePicks' 'rb3') playmaker=(route-action 'updatePicks' 'playmakers')}}
+
+        {{playoff-pick label='WR/TE #1' options=model.validPicks.wrte pick=model.picks.wrte1 playmakers=model.picks.playmakers update=(route-action 'updatePicks' 'wrte1') playmaker=(route-action 'updatePicks' 'playmakers')}}
+        {{playoff-pick label='WR/TE #2' options=model.validPicks.wrte pick=model.picks.wrte2 playmakers=model.picks.playmakers update=(route-action 'updatePicks' 'wrte2') playmaker=(route-action 'updatePicks' 'playmakers')}}
+        {{playoff-pick label='WR/TE #3' options=model.validPicks.wrte pick=model.picks.wrte3 playmakers=model.picks.playmakers update=(route-action 'updatePicks' 'wrte3') playmaker=(route-action 'updatePicks' 'playmakers')}}
+        {{playoff-pick label='WR/TE #4' options=model.validPicks.wrte pick=model.picks.wrte4 playmakers=model.picks.playmakers update=(route-action 'updatePicks' 'wrte4') playmaker=(route-action 'updatePicks' 'playmakers')}}
+        {{playoff-pick label='WR/TE #5' options=model.validPicks.wrte pick=model.picks.wrte5 playmakers=model.picks.playmakers update=(route-action 'updatePicks' 'wrte5') playmaker=(route-action 'updatePicks' 'playmakers')}}
+
+        {{playoff-pick label='K #1' options=model.validPicks.k pick=model.picks.k1 playmakers=model.picks.playmakers update=(route-action 'updatePicks' 'k1') playmaker=(route-action 'updatePicks' 'playmakers')}}
+        {{playoff-pick label='K #2' options=model.validPicks.k pick=model.picks.k2 playmakers=model.picks.playmakers update=(route-action 'updatePicks' 'k2') playmaker=(route-action 'updatePicks' 'playmakers')}}
+      </div>
+    </div>
+  </div>
+</div>

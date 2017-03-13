@@ -1,0 +1,22 @@
+<div class="teams">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="card">
+                <div class="card-block">
+                    {{#power-select
+                        triggerClass='form-control'
+                        options=model
+                        searchField='name'
+                        placeholder='Select a team'
+                        selected=selectedTeam
+                        onchange=(route-action 'changeTeam') as |team|}}
+                        {{team.name}}
+                    {{/power-select}}
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12">
+            {{outlet}}
+        </div>
+    </div>
+</div>
