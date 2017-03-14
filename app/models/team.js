@@ -8,6 +8,7 @@ export default DS.Model.extend({
   paid: attr('boolean'),
   points: attr('number'),
   playoffs: attr('number'),
+  playoff_points: attr('number'),
   wl: attr('string'),
 
   user: belongsTo('user', { async: true })
