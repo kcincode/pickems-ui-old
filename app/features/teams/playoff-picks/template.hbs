@@ -1,1 +1,42 @@
-{{outlet}}
+<div class="card">
+  <div class="card-block text-xs-center">
+    <a class="btn btn-block btn-secondary" href="javascript:history.back()">Go back</a>
+  </div>
+</div>
+{{team-card team=model.team showWeeks=false playoff=true}}
+<div class="card">
+    <div class="card-block">
+      <h4 class="card-title">Playoff picks</h4>
+      <table class="table table-hover table-condensed">
+        <thead>
+          <tr>
+            <th>Pick</th>
+            <th class="text-xs-center">Wildcard</th>
+            <th class="text-xs-center">Divisional</th>
+            <th class="text-xs-center">Conference</th>
+            <th class="text-xs-center">Super Bowl</th>
+            <th class="text-xs-center">Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each model.teamPicks.picks as |row|}}
+            <tr class="{{if row.playmaker 'text-primary'}}">
+              <td>{{row.name}}</td>
+              <td class="text-xs-center">{{row.wildcard}}</td>
+              <td class="text-xs-center">{{row.divisional}}</td>
+              <td class="text-xs-center">{{row.conference}}</td>
+              <td class="text-xs-center">{{row.superbowl}}</td>
+              <td class="text-xs-center"><strong>{{row.total}}</strong></td>
+            </tr>
+          {{else}}
+            <tr><td colspan="6" class="text-xs-center"><h4>No picks made by this team</h4></td></tr>
+          {{/each}}
+          <tr class="bg-primary">
+            <td colspan="4">&nbsp;</td>
+            <td class="text-xs-right"><strong>Total:</strong></td>
+            <td class="text-xs-center"><strong>{{ model.teamPicks.overall}}</strong></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+</div>

@@ -7,6 +7,7 @@ export default Ember.Component.extend({
   system: service(),
   changeWeek: 'changeWeek',
   showWeeks: true,
+  playoff: false,
 
   actions: {
     changeWeek(week) {
