@@ -58,10 +58,10 @@ export default Ember.Route.extend({
         let playmakers = data.get('playmakers');
         if (!isEmpty(playmakers)) {
           playmakers = playmakers.split(',');
+          let oldId = data.get(type).id;
+          playmakers.removeObject(oldId);
+          data.set('playmakers', playmakers.join(','));
         }
-        let oldId = data.get(type).id;
-        playmakers.removeObject(oldId);
-        data.set('playmakers', playmakers.join(','));
       }
 
       // set the new data

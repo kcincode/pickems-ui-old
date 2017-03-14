@@ -7,8 +7,8 @@
         </div>
         <div class="row">
           <div class="col-md-4 text-xs-center">
-              <h2>{{team.points}}</h2>
-              <h5><small class="text-muted">POINTS</small></h5>
+              <h2>{{if playoff team.playoffs team.points}}</h2>
+              <h5><small class="text-muted">{{if playoff 'STARTING' 'POINTS'}}</small></h5>
           </div>
           <div class="col-md-4">
             <h5 class='paid-status'>
@@ -21,8 +21,8 @@
             </h5>
           </div>
           <div class="col-md-4 text-xs-center">
-              <h2>{{team.wl}}</h2>
-              <h5><small class="text-muted">W/L</small></h5>
+              <h2>{{if playoff team.playoff_points team.wl}}</h2>
+              <h5><small class="text-muted">{{if playoff 'POINTS' 'W/L'}}</small></h5>
           </div>
         </div>
     </div>

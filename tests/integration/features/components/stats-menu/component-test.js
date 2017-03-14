@@ -11,6 +11,6 @@ test('it renders', function(assert) {
 
   this.render(hbs`{{stats-menu}}`);
 
-  assert.equal(this.$('.card-title').length, 1, 'it has a title');
-  assert.equal(this.$('.list-group a').length, 3, 'it has 3 links');
+  assert.equal(2, this.$('.card-title').length, 'it has two titles');
+  assert.equal(4, this.$('.list-group a').length, 'it has 4 links');
 });

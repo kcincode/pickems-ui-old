@@ -11,19 +11,29 @@
                 <tr>
                     <th>Rank</th>
                     <th>Team</th>
-                    <th class="text-xs-center">Points</th>
-                    <th class="text-xs-center">W/L</th>
-                    <th class="text-xs-center">Playoff</th>
+                    {{#if playoff}}
+                        <th class="text-xs-center">Starting</th>
+                        <th class="text-xs-center">Points</th>
+                    {{else}}
+                        <th class="text-xs-center">Points</th>
+                        <th class="text-xs-center">W/L</th>
+                        <th class="text-xs-center">Playoff</th>
+                    {{/if}}
                 </tr>
             </thead>
             <tbody>
                 {{#each-in data as |idx row|}}
                     <tr>
                         <td>{{inc idx}}</td>
-                        <td>{{link-to row.name 'teams.picks' row.slug}}</td>
-                        <td class="text-xs-center">{{row.points}}</td>
-                        <td class="text-xs-center">{{row.wl}}</td>
-                        <td class="text-xs-center">{{row.playoffs}}</td>
+                        <td>{{link-to row.name 'teams.playoff-picks' row.slug}}</td>
+                        {{#if playoff}}
+                            <td class="text-xs-center">{{row.playoffs}}</td>
+                            <td class="text-xs-center">{{row.playoff_points}}</td>
+                        {{else}}
+                            <td class="text-xs-center">{{row.points}}</td>
+                            <td class="text-xs-center">{{row.wl}}</td>
+                            <td class="text-xs-center">{{row.playoffs}}</td>
+                        {{/if}}
                     </tr>
                 {{/each-in}}
             </tbody>

@@ -15,12 +15,17 @@ Router.map(function() {
   this.route('teams', function() {
     this.route('team', { path: ':team' });
     this.route('picks', { path: ':team/picks' });
+    this.route('playoff-picks', { path: ':team/playoff-picks' });
   });
 
   this.route('stats', function() {
     this.route('rankings');
     this.route('weekly');
     this.route('best');
+
+    this.route('playoff', function() {
+      this.route('rankings');
+    });
   });
   this.route('denied');
 
