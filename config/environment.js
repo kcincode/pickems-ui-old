@@ -1,7 +1,7 @@
-/* jshint node: true */
+/* eslint-env node */
 
-module.exports = function(environment) {
-  var ENV = {
+module.exports = function (environment) {
+  let ENV = {
     modulePrefix: 'pickems',
     podModulePrefix: 'pickems/features',
     environment,
@@ -20,6 +20,10 @@ module.exports = function(environment) {
       FEATURES: {
         // Here you can enable experimental features on an ember canary build
         // e.g. 'with-controller': true
+      },
+      EXTEND_PROTOTYPES: {
+        // Prevent Ember Data from overriding Date.parse.
+        Date: false
       }
     },
 
@@ -37,7 +41,7 @@ module.exports = function(environment) {
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
 
     ENV.api = {
-      host: 'http://localhost:4000',
+      host: 'http://localhost:8000',
       namespace: 'api',
       auth: 'token',
       refresh: 'refresh',
@@ -54,7 +58,7 @@ module.exports = function(environment) {
     ENV.locationType = 'none';
 
     ENV.api = {
-      host: 'http://localhost:4000',
+      host: 'http://localhost:8000',
       namespace: 'api',
       auth: 'token',
       refresh: 'refresh',
